@@ -35,7 +35,7 @@ jobs:
         fi
 
     - name: Create new issue
-      if: ${{ steps.uw.outputs.has_report == "true" }}
+      if: ${{ steps.uw.outputs.has_report == 'true' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: hub issue create -F report.md -l update
