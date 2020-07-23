@@ -1,8 +1,9 @@
 name: urlwatch
 
 on:
-  - push: # testing
-  - cron: '23 13 * * 5' # At 13:23 on Friday
+  push: # testing
+  schedule:
+    - cron: '23 13 * * 5' # At 13:23 on Friday
 
 jobs:
   urlwatch:
