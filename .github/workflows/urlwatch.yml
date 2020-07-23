@@ -14,9 +14,12 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install tools
+      env:
+        GITHUB_TOKEN: hub.pls
       run: |
         sudo apt-get update
-        sudo apt-get -y install urlwatch python3-bs4 hub
+        sudo apt-get -y install urlwatch python3-bs4
+        curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.2
 
     - name: Cache urlwatch database
       uses: actions/cache@v2
@@ -38,4 +41,4 @@ jobs:
       if: ${{ steps.uw.outputs.has_report == 'true' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: hub issue create -F report.md -l update
+      run: bin/hub issue create -F report.md -l update
