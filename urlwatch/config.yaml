@@ -1,0 +1,27 @@
+display:
+  error: true
+  new: true
+  unchanged: false
+job_defaults:
+  all: {}
+  browser: {}
+  shell: {}
+  url: {}
+report:
+  html:
+    diff: unified
+  markdown:
+    details: false
+    footer: true
+    minimal: false
+  stdout:
+    color: true
+    enabled: true
+  text:
+    details: true
+    footer: true
+    line_length: 75
+    minimal: false
+  custom_markdown:
+    filename: urlwatch.md
+    enabled: true
