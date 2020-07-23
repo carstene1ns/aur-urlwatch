@@ -1,0 +1,40 @@
+name: urlwatch
+
+on:
+  - push: # testing
+  - cron: '23 13 * * 5' # At 13:23 on Friday
+
+jobs:
+  urlwatch:
+    name: Use urlwatch to check for updates
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install tools
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install urlwatch python3-bs4 hub
+
+    - name: Cache urlwatch database
+      with:
+        path: urlwatch/cache.db
+        key: ${{ hashFiles('cache.db') }}
+
+    - name: Run urlwatch
+      id: uw
+      run: |
+        ./urlwatch.sh
+        if [ -s urlwatch.md ]; then
+          echo "Report for $(date -R)" > report.md
+          cat urlwatch.md >> report.md
+          echo "::set-output name=has_report::true"
+        fi
+
+    - name: Create new issue
+      if: ${{ steps.uw.outputs.has_report == "true" }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        hub issue create -F report.md -l update
