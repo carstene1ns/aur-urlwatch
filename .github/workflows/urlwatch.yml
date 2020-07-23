@@ -19,6 +19,7 @@ jobs:
         sudo apt-get -y install urlwatch python3-bs4 hub
 
     - name: Cache urlwatch database
+      uses: actions/cache@v2
       with:
         path: urlwatch/cache.db
         key: ${{ hashFiles('cache.db') }}
@@ -37,5 +38,4 @@ jobs:
       if: ${{ steps.uw.outputs.has_report == "true" }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        hub issue create -F report.md -l update
+      run: hub issue create -F report.md -l update
