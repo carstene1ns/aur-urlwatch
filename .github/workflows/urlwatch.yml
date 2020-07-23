@@ -25,7 +25,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: urlwatch/cache.db
-        key: ${{ hashFiles('cache.db') }}
+        key: database-${{ hashFiles('cache.db') }}
 
     - name: Run urlwatch
       id: uw
