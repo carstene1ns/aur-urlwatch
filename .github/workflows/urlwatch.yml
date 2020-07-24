@@ -13,15 +13,28 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip
+        restore-keys: |
+          ${{ runner.os }}-
+
     - name: Install tools
       env:
         GITHUB_TOKEN: hub.pls
       run: |
-        sudo apt-get update
-        sudo apt-get -y install urlwatch python3-bs4
+        python -m pip install --upgrade pip
+        pip install urlwatch beautifulsoup4 lxml
         curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.2
 
-    - name: Cache urlwatch database
+    - name: Cache urlwatch
       uses: actions/cache@v2
       with:
         path: urlwatch/cache.db
