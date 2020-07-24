@@ -1,6 +1,6 @@
 display:
   error: true
-  new: true
+  new: false
   unchanged: false
 job_defaults:
   all: {}
