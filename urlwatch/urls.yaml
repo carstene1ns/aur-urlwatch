@@ -12,3 +12,6 @@ url: https://lib.openmpt.org/files/libopenmpt/src/
 ---
 name: libopenmpt-modplug
 url: https://lib.openmpt.org/files/libopenmpt-modplug/
+---
+name: corsix-th
+url: https://github.com/CorsixTH/CorsixTH/releases
