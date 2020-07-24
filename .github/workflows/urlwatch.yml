@@ -38,7 +38,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: urlwatch/cache.db
-        key: database-${{ hashFiles('cache.db') }}
+        key: database-${{ hashFiles('urlwatch/cache.db') }}
         restore-keys: |
           database-
 
@@ -47,7 +47,7 @@ jobs:
       run: |
         ./urlwatch.sh
         if [ -s urlwatch.md ]; then
-          echo "Report for $(LANG=C date "+%a, %d %b %Y")\n" > report.md
+          echo -e "Report for $(LANG=C date "+%a, %d %b %Y")\n" > report.md
           cat urlwatch.md >> report.md
           echo "::set-output name=has_report::true"
         fi

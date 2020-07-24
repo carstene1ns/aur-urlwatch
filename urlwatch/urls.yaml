@@ -6,3 +6,9 @@ url: https://github.com/EasyRPG/liblcf/releases
 ---
 name: yquake2
 url: https://github.com/yquake2/yquake2/releases
+---
+name: libopenmpt
+url: https://lib.openmpt.org/files/libopenmpt/src/
+--
+name: libopenmpt-modplug
+url: https://lib.openmpt.org/files/libopenmpt-modplug/
