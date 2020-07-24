@@ -38,9 +38,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: urlwatch/cache.db
-        key: database-${{ hashFiles('urlwatch/cache.db') }}
-        restore-keys: |
-          database-
+        key: database
 
     - name: Run urlwatch
       id: uw
